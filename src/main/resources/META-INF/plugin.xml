@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>com.moling.tModLoaderHelper</id>
+    <name>tModLoaderHelper</name>
+    <version>0.1</version>
+    <vendor>末泠</vendor>
+    <description><![CDATA[
+      tModLoader 助手为 Rider 中的泰拉瑞亚模组开发提供实体图鉴与 C# 代码补全。
+
+图鉴工具窗口可浏览物品、弹幕、NPC 和 Buff 数据及对应图标，并支持按中文名、英文常量名、拼音或数字 ID 搜索。
+
+在 C# 代码中输入 ItemID.、ProjectileID.、NPCID. 或 BuffID. 可查找对应常量。补全候选显示英文常量名、中文名称和数字 ID，并支持中文关键词及拼音匹配，帮助开发者更快查询和核对游戏数据。
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.json</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.ItemCompletionContributor"/>
+        <completion.contributor language="CSharp" implementationClass="com.moling.tmodloaderhelper.items.ItemCompletionContributor"/>
+        <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.ProjectileCompletionContributor"/>
+        <completion.contributor language="CSharp" implementationClass="com.moling.tmodloaderhelper.items.ProjectileCompletionContributor"/>
+        <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.NpcCompletionContributor"/>
+        <completion.contributor language="CSharp" implementationClass="com.moling.tmodloaderhelper.items.NpcCompletionContributor"/>
+        <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.BuffCompletionContributor"/>
+        <completion.contributor language="CSharp" implementationClass="com.moling.tmodloaderhelper.items.BuffCompletionContributor"/>
+        <toolWindow id="tModLoader助手" anchor="right" factoryClass="com.moling.tmodloaderhelper.items.ItemBrowserToolWindowFactory" icon="/META-INF/tool.png"/>
+    </extensions>
+</idea-plugin>
