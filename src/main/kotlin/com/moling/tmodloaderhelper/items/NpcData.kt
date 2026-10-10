@@ -19,6 +19,7 @@ internal data class GameNpc(val id: Int, val englishName: String, val chineseNam
 internal object NpcData {
     private val log = Logger.getInstance(NpcData::class.java)
     val npcs: List<GameNpc> by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { loadNpcs() }
+    private val frameCounts: Map<Int, Int> by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { loadFrameCounts() }
     private val iconCache = HashMap<Int, Icon>()
 
     fun icon(id: Int): Icon = synchronized(iconCache) {
@@ -26,7 +27,7 @@ internal object NpcData {
             runCatching {
                 val image = NpcData::class.java.getResourceAsStream("/assets/npcs/NPC_$id.png")
                     ?.use(ImageIO::read)
-                if (image == null) MissingNpcIcon else NpcIcon(image)
+                if (image == null) MissingNpcIcon else NpcIcon(image, frameCounts[id] ?: 1)
             }.getOrElse { error ->
                 log.debug("加载 NPC 贴图失败：$id", error)
                 MissingNpcIcon
@@ -53,6 +54,17 @@ internal object NpcData {
         }.toList()
     }
 
+    /** 从 tModLoader Main.npcFrameCount 对应导出的资源中加载各 NPC 的纵向帧数。 */
+    private fun loadFrameCounts(): Map<Int, Int> = readResource("/data/npc_frames.json")
+        ?.let { text ->
+            Regex("\\{\\s*\"Id\"\\s*:\\s*(\\d+)\\s*,\\s*\"FrameCount\"\\s*:\\s*(\\d+)\\s*}")
+                .findAll(text).mapNotNull { match ->
+                    val id = match.groupValues[1].toIntOrNull() ?: return@mapNotNull null
+                    val count = match.groupValues[2].toIntOrNull()?.takeIf { it > 0 } ?: return@mapNotNull null
+                    id to count
+                }.toMap()
+        } ?: emptyMap()
+
     private fun readResource(path: String): String? = runCatching {
         NpcData::class.java.getResourceAsStream(path)?.use {
             BufferedReader(InputStreamReader(it, StandardCharsets.UTF_8)).readText().removePrefix("\uFEFF")
@@ -66,20 +78,24 @@ internal object NpcData {
         .replace("\\r", "\r")
         .replace("\\t", "\t")
 
-    private class NpcIcon(private val image: BufferedImage) : Icon {
+    /** NPC 贴图按源码帧数切分，仅渲染首帧；未配置帧数的图沿用整张贴图。 */
+    private class NpcIcon(private val image: BufferedImage, requestedFrames: Int) : Icon {
+        private val frameCount = if (requestedFrames > 1 && image.height % requestedFrames == 0) requestedFrames else 1
+        private val frameHeight = image.height / frameCount
         private val boxSize = 40
         override fun getIconWidth() = boxSize
         override fun getIconHeight() = boxSize
 
         override fun paintIcon(c: Component?, g: Graphics, x: Int, y: Int) {
-            val scale = minOf(1.0, boxSize.toDouble() / image.width, boxSize.toDouble() / image.height)
+            val scale = minOf(1.0, boxSize.toDouble() / image.width, boxSize.toDouble() / frameHeight)
             val width = (image.width * scale).toInt().coerceAtLeast(1)
-            val height = (image.height * scale).toInt().coerceAtLeast(1)
+            val height = (frameHeight * scale).toInt().coerceAtLeast(1)
             val dx = x + (boxSize - width) / 2
             val dy = y + (boxSize - height) / 2
             val oldClip = g.clip
             g.clipRect(x, y, boxSize, boxSize)
-            g.drawImage(image, dx, dy, width, height, c)
+            // tModLoader 将第一帧放在精灵图顶部（frame.Y = 0）。
+            g.drawImage(image, dx, dy, dx + width, dy + height, 0, 0, image.width, frameHeight, c)
             g.clip = oldClip
         }
     }

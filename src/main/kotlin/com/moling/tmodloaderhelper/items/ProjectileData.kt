@@ -67,30 +67,19 @@ internal object ProjectileData {
         .replace("\\r", "\r")
         .replace("\\t", "\t")
 
+    /**
+     * 弹幕预览始终显示原版贴图的第一帧，不播放动画。
+     * requestedFrames 仍用于按 tModLoader 的 projFrames 切分精灵表，避免把整张动画图压缩成一帧。
+     */
     private class ProjectileIcon(private val sheet: BufferedImage, requestedFrames: Int) : Icon {
         private val frameCount = if (requestedFrames > 1 && sheet.height % requestedFrames == 0) requestedFrames else 1
         private val frameHeight = sheet.height / frameCount
         private val boxSize = 40
-        private var frame = 0
-        private var ticks = 0
-        private var component: Component? = null
-        private val timer = javax.swing.Timer(50) {
-            if (frameCount > 1) {
-                ticks++
-                if (ticks >= 6) {
-                    ticks = 0
-                    frame = (frame + 1) % frameCount
-                    component?.repaint()
-                }
-            }
-        }
 
         override fun getIconWidth() = boxSize
         override fun getIconHeight() = boxSize
 
         override fun paintIcon(c: Component?, g: Graphics, x: Int, y: Int) {
-            component = c
-            if (frameCount > 1 && !timer.isRunning) timer.start()
             val scale = minOf(1.0, boxSize.toDouble() / sheet.width, boxSize.toDouble() / frameHeight)
             val width = (sheet.width * scale).toInt().coerceAtLeast(1)
             val height = (frameHeight * scale).toInt().coerceAtLeast(1)
@@ -98,9 +87,8 @@ internal object ProjectileData {
             val dy = y + (boxSize - height) / 2
             val oldClip = g.clip
             g.clipRect(x, y, boxSize, boxSize)
-            val sy = frame * frameHeight
-            g.drawImage(sheet, dx, dy, dx + width, dy + height, 0, sy, sheet.width,
-                (sy + frameHeight).coerceAtMost(sheet.height), c)
+            // 与源码中的 proj.frame 初始值一致，固定绘制第一帧（frame = 0）。
+            g.drawImage(sheet, dx, dy, dx + width, dy + height, 0, 0, sheet.width, frameHeight, c)
             g.clip = oldClip
         }
     }
