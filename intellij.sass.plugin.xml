@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.sass.plugin">
+  <dependencies>
+    <module name="intellij.sass"/>
+    <module name="intellij.sass.backend"/>
+    <module name="intellij.sass.common"/>
+    <module name="intellij.sass.copyright"/>
+    <module name="intellij.sass.frontend.split"/>
+    <module name="intellij.sass.watcher"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/sass-plugin/lib/sass-plugin.jar"/>
+  </resources>
+</module>

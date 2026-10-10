@@ -1,0 +1,240 @@
+<idea-plugin visibility="internal" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <dependencies>
+    <module name="intellij.platform.backend.split"/>
+    <module name="intellij.cwm.plugin.common"/>
+  </dependencies>
+
+  <xi:include href="/META-INF/codeWithMeTelephony.xml"/>
+
+  <actions resource-bundle="messages.CodeWithMeBackendBundle">
+    <action id="GetJoinLinkAction" class="com.intellij.cwm.plugin.join.GetJoinLinkAction" icon="AllIcons.CodeWithMe.CwmInvite" />
+    <action id="GetDebugJoinLinkAction" class="com.intellij.cwm.plugin.join.GetDebugJoinLinkAction" icon="AllIcons.CodeWithMe.CwmInvite" internal="true"/>
+
+    <action id="CopyJoinLinkAction" class="com.intellij.cwm.plugin.join.CopyJoinLinkAction" icon="AllIcons.CodeWithMe.CwmInvite"/>
+    <action id="ShutdownCodeWithMe" class="com.intellij.cwm.plugin.join.ShutdownCodeWithMeAction" icon="AllIcons.CodeWithMe.CwmTerminate" />
+    <action id="ShowPermissionsAction" class="com.intellij.cwm.plugin.permissions.ShowPermissionsAction" icon="AllIcons.CodeWithMe.CwmPermissions"/>
+    <group id="HostCodeWithMeMainGroup">
+      <reference ref="GetJoinLinkAction" />
+      <reference ref="GetDebugJoinLinkAction" />
+      <reference ref="CopyJoinLinkAction" />
+      <reference ref="ShowPermissionsAction"/>
+      <reference ref="ShutdownCodeWithMe" />
+      <separator />
+      <add-to-group group-id="CodeWithMeMainGroup" anchor="first"/>
+    </group>
+
+    <group id="HostCodeWithMeCallMainGroup" class="com.intellij.cwm.plugin.telephony.HostCodeWithMeCallMainGroup">
+      <reference ref="OpenCallWindowAction"/>
+      <action id="EnableVoiceCallAction" class="com.intellij.cwm.plugin.telephony.EnableVoiceCallAction"/>
+      <separator />
+      <add-to-group group-id="HostCodeWithMeMainGroup" anchor="last"/>
+    </group>
+
+    <action id="CodeWithMeBackendCollectZippedLogs" class="com.intellij.cwm.plugin.diagnostics.CWMBackendCollectZippedLogsWithRemoteAction">
+      <add-to-group group-id="HelpMenu" anchor="after" relative-to-action="CollectZippedLogs"/>
+    </action>
+
+    <action id="CodeWithMeBackendReportIssue" class="com.intellij.cwm.plugin.diagnostics.BackendReportIssueAction"/>
+
+    <group id="HostCodeWithMeSubMenuGroup">
+      <separator/>
+      <reference ref="CodeWithMeBackendReportIssue" />
+      <add-to-group group-id="CodeWithMeHeaderMenuAdditionalGroup"/>
+    </group>
+
+    <action id="CWMHostOpenSettingsAction" class="com.intellij.cwm.plugin.common.toolbar.CWMOpenSettingsAction" icon="AllIcons.General.Settings"/>
+
+    <action id="CWMHostShowPopupAction" class="com.intellij.cwm.plugin.join.CWMHostShowPopupAction"
+            icon="AllIcons.CodeWithMe.CwmAccess">
+      <keyboard-shortcut keymap="$default" first-keystroke="control shift Y"/>
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="control shift Y" replace-all="true"/>
+      <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control shift Y" replace-all="true"/>
+      <add-to-group group-id="CWMShowPopupActionGroup"/>
+    </action>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <registryKey key="codeWithMe.peer2peer.enabled" defaultValue="true"
+                 description="Enable P2P support for Code With Me via QUIC protocol" restartRequired="false"/>
+
+    <registryKey key="codeWithMe.relay.enabled" defaultValue="true"
+                 description="Enable WebSocket Relay support for Code With Me" restartRequired="false"/>
+
+    <registryKey key="codeWithMe.turnRelay.enabled" defaultValue="true"
+                 description="Enable Turn Relay support for Code With Me" restartRequired="false"/>
+
+    <registryKey key="codeWithMe.direct.enabled" defaultValue="true"
+                 description="Enable Direct Connections support for Code With Me" restartRequired="false"/>
+
+    <registryKey key="codeWithMe.forceRegion" defaultValue=""
+                 description="Force a specific WebSocket and TURN relay region from Lobby Server"/>
+
+    <registryKey key="codeWithMe.useShortLinks" defaultValue="true"
+                 description="Use short links for sharing"/>
+
+    <registryKey key="codeWithMe.inactive.session.popup.wait.timeout" defaultValue="3"
+                 description="Set time in minutes for which the popup will be shown"/>
+
+    <registryKey key="codeWithMe.inactive.session.popup.time.to.show" defaultValue="30"
+                 description="Set time session has to have no guest for popup to be shown"/>
+
+    <projectService serviceInterface="com.intellij.cwm.plugin.common.users.UserManager"
+                    serviceImplementation="com.intellij.cwm.plugin.users.BackendUserManager"
+                    preload="true"/>
+    <projectService serviceImplementation="com.intellij.cwm.plugin.ports.CwmPortForwardingToolWindowManager"
+                    serviceInterface="com.intellij.cwm.plugin.common.portForwarding.PortForwardingToolWindowManager"
+                    preload="true"/>
+
+    <applicationService serviceImplementation="com.intellij.cwm.plugin.options.DefaultCodeWithMeEnterpriseConfiguration"
+                        serviceInterface="com.intellij.cwm.plugin.options.CodeWithMeEnterpriseConfiguration"/>
+
+    <troubleInfoCollector implementation="com.intellij.cwm.plugin.internal.RemoteEditorsFollowingTroubleInfoCollector"/>
+
+    <!-- Following -->
+    <projectService serviceInterface="com.intellij.cwm.plugin.following.ClientFollowMeManager"
+                    serviceImplementation="com.intellij.cwm.plugin.following.LocalFollowMeManager"
+                    client="local"/>
+    <projectService serviceInterface="com.intellij.cwm.plugin.following.ClientFollowMeManager"
+                    serviceImplementation="com.intellij.cwm.plugin.following.GuestFollowMeManager"
+                    client="remote"
+                    preload="true"/>
+
+    <projectService serviceInterface="com.intellij.cwm.plugin.common.users.CWMUserFocusHost"
+                    serviceImplementation="com.intellij.cwm.plugin.users.BackendCWMUserFocusHost"/>
+
+    <projectService serviceInterface="com.intellij.cwm.plugin.following.FollowMeManager"
+                    serviceImplementation="com.intellij.cwm.plugin.following.FollowMeManagerService"
+                    preload="true"/>
+
+    <rdserver.reflectedPopupHandler implementation="com.intellij.cwm.plugin.following.popups.FollowingPopupReflectionHandler"/>
+
+    <!--<projectService serviceInterface="com.intellij.codeInsight.documentation.DocumentationManager"
+                    serviceImplementation="com.intellij.cwm.plugin.following.quickDoc.BackendDocumentationManager"
+                    overrides="true"/>
+
+    <projectService serviceImplementation="com.intellij.cwm.plugin.following.quickDoc.BackendQuickDocHost"
+                    preload="true"
+                    client="remote"/>-->
+
+    <!-- Permissions -->
+    <applicationService serviceInterface="com.jetbrains.rdserver.permissions.ClientPermissionManager"
+                        serviceImplementation="com.intellij.cwm.plugin.permissions.GuestPermissionManager"
+                        client="guest"/>
+    <projectService serviceImplementation="com.intellij.cwm.plugin.permissions.CwmPermissionInteractionManager"
+                    serviceInterface="com.jetbrains.rdserver.permissions.PermissionInteractionManager"
+                    client="guest"/>
+    <rd.rootExtListener endpoint="IDE Backend"
+                        listener="com.intellij.cwm.plugin.permissions.CwmPermissionInteractionManager$ProtocolListener"/>
+
+    <applicationService serviceImplementation="com.intellij.cwm.plugin.join.HostAcceptUserDialogService"
+                        serviceInterface="com.intellij.cwm.plugin.common.ui.AcceptUserDialogService" overrides="true" />
+
+    <statistics.balloonIdsHolder implementation="com.intellij.cwm.plugin.statistics.CwmHostBalloonIdsHolder"/>
+
+    <projectService serviceImplementation="com.intellij.cwm.plugin.ui.BackendModalityHost"
+                    client="guest"
+                    preload="true"/>
+
+    <backend.highlighterModelCreator id="remoteCaret" order="before custom" implementation="com.intellij.cwm.plugin.carets.RemoteCaretProtocolHighlighterModelCreator" />
+
+    <contentTabActionProvider implementation="com.intellij.cwm.plugin.toolWindow.BackendContentTabActionProvider"/>
+
+    <rdserver.unsupportedToolwindowMessageProvider implementation="com.intellij.cwm.plugin.toolWindow.CWMUnsupportedToolwindowMessageProvider"/>
+
+    <applicationService serviceImplementation="com.intellij.cwm.plugin.options.CodeWithMeHostConfigurableProviderService"
+                        serviceInterface="com.intellij.cwm.plugin.common.options.CodeWithMeConfigurableProviderService"
+                        overrides="true"/>
+
+    <codeWithMeAvailability implementation="com.intellij.cwm.plugin.UnattendedCodeWithMeAvailabilityService"/>
+
+    <notificationGroup id="CodeWithMeHost" displayType="BALLOON"
+                       bundle="messages.CodeWithMeBackendBundle" key="notification.group.cwm.session.notifications"
+                       notificationIds="cwm.host.session.nmins_left;cwm.host.connection.version_mismatch_error;cwm.host.connection.user_joined;
+                       cwm.host.connection.user_left;cwm.host.builtinserver.port_bind_error;"/>
+
+    <applicationService serviceImplementation="com.intellij.cwm.plugin.permissions.GuestIdePermissionManager"
+                        serviceInterface="com.intellij.platform.ide.core.permissions.impl.IdePermissionManager"
+                        client="guest"/>
+
+    <fileVisibilityProvider implementation="com.intellij.cwm.plugin.permissions.CwmSharedPermissionManager$MyFileVisibilityProvider"/>
+  </extensions>
+
+  <applicationListeners>
+    <listener class="com.intellij.cwm.plugin.following.FollowMeEditorCopyListener"
+              topic="com.jetbrains.rdserver.ui.converters.BackendEditorCopyListener"/>
+
+    <listener class="com.intellij.cwm.plugin.CwmProjectCloseListener"
+              topic="com.intellij.openapi.project.ProjectCloseListener" />
+
+    <listener class="com.intellij.cwm.plugin.users.BackendUserManager$Listener"
+              topic="com.jetbrains.rdserver.core.RemoteClientSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.join.CwmUserOverflowListener"
+              topic="com.jetbrains.rdserver.core.RemoteClientSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.permissions.GuestPermissionListener"
+              topic="com.jetbrains.rdserver.permissions.ClientPermissionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.permissions.GuestPermissionListener"
+              topic="com.jetbrains.rdserver.core.RemoteClientSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.permissions.CwmPermissionInteractionManager$MyPermissionListener"
+              topic="com.jetbrains.rdserver.permissions.ClientPermissionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.popups.FollowClientPopupsListener$SessionListener"
+              topic="com.jetbrains.rdserver.core.RemoteClientSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.settings.CwmLanguageAndRegionListener"
+              topic="com.jetbrains.rdserver.core.RemoteClientSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.FollowMeEditorListener"
+              topic="com.jetbrains.rdserver.editors.BackendEditorHostListener" />
+  </applicationListeners>
+
+  <projectListeners>
+    <listener class="com.intellij.cwm.plugin.following.FollowMeLookupListener"
+              topic="com.intellij.codeInsight.lookup.LookupManagerListener" />
+
+    <listener class="com.intellij.cwm.plugin.following.CwmFollowingListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.users.BackendUserManager$BackendUserManagerJoinLinkListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.session.BackendRemainingTimeListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.toolWindow.BackendCodeWithWeToolWindowJoinLinkListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.toolWindow.ToolwindowCodeWithMeSessionListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.CWMHostClosedToolbarNotification"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.ports.CodeWithMePortForwardingJoinLinkListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.join.CWMInactiveSessionPopup"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.editors.MultiUserCaretSynchronizerProjectService"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.BackendFollowMeDebuggerSessionListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.BackendProjectViewListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.users.BackendCWMUserFocusHost$Listener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.BackendFollowMeEditorsHost$Listener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+
+    <listener class="com.intellij.cwm.plugin.following.FollowMeCloseLookupListener"
+              topic="com.intellij.cwm.plugin.session.CodeWithMeSessionListener"/>
+  </projectListeners>
+</idea-plugin>

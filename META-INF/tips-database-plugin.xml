@@ -1,0 +1,14 @@
+<idea-plugin>
+        <extensions defaultExtensionNs="com.intellij">
+           <tipAndTrick file="DBRunQuery.html"/>
+<tipAndTrick file="DBConsole.html"/>
+<tipAndTrick file="DBRunQueryIntention.html"/>
+<tipAndTrick file="DBMakeDataSourceReadonly.html"/>
+<tipAndTrick file="DBTableEditor.html"/>
+<tipAndTrick file="CompareDataSources.html"/>
+<tipAndTrick file="DBColors.html"/>
+<tipAndTrick file="db_tip_forget_cached_schemas.html"/>
+<tipAndTrick file="DBTableViewForCSVFiles.html"/>
+<tipAndTrick file="db_tip_back_up_table.html"/>
+        </extensions>
+    </idea-plugin>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.spring.core.plugin">
+  <dependencies>
+    <module name="intellij.java.compiler.impl"/>
+    <module name="intellij.platform.editor.ui"/>
+    <module name="intellij.platform.jps.model"/>
+    <module name="intellij.platform.refactoring"/>
+    <module name="intellij.platform.structureView.impl"/>
+    <module name="intellij.platform.usageView.impl"/>
+    <module name="intellij.xml.impl"/>
+    <module name="intellij.libraries.asm"/>
+    <module name="intellij.platform.ide.impl"/>
+    <module name="intellij.java.i18n"/>
+    <module name="intellij.java.ui"/>
+    <module name="intellij.platform.usageView"/>
+    <module name="intellij.java.execution"/>
+    <module name="intellij.java.analysis"/>
+    <module name="intellij.platform.commercial"/>
+    <module name="intellij.platform.util.progress"/>
+    <module name="intellij.xml.structureView"/>
+    <module name="intellij.platform.commercial.verifier"/>
+    <module name="intellij.regexp"/>
+    <module name="intellij.spellchecker"/>
+    <module name="intellij.spring"/>
+    <module name="intellij.properties.backend.psi"/>
+    <module name="intellij.javaee.platform.impl"/>
+    <module name="intellij.javaee.persistence.impl"/>
+    <module name="intellij.javaee.web.impl"/>
+    <module name="intellij.spring.persistence"/>
+    <module name="intellij.spring.el"/>
+    <module name="intellij.spring.jsf"/>
+    <module name="intellij.spring.web"/>
+    <module name="intellij.spring.eclipse"/>
+    <module name="intellij.libraries.gson"/>
+    <module name="intellij.platform.externalSystem"/>
+    <module name="intellij.platform.externalSystem.impl"/>
+    <module name="intellij.jsp"/>
+    <module name="intellij.jsp.spi"/>
+    <module name="intellij.json.backend"/>
+    <module name="intellij.java.ultimate.icons"/>
+    <module name="intellij.microservices.jvm"/>
+    <module name="intellij.libraries.stream"/>
+    <module name="intellij.platform.core.ui"/>
+    <module name="intellij.platform.graph"/>
+    <module name="intellij.platform.ide.util.io"/>
+    <module name="intellij.java.jam.impl"/>
+    <module name="intellij.java.impl.refactorings"/>
+    <module name="intellij.platform.util.jdom"/>
+    <module name="intellij.platform.analysis"/>
+    <module name="intellij.platform.workspace.jps"/>
+    <module name="intellij.libraries.fastutil"/>
+    <module name="intellij.java.unscramble"/>
+    <module name="intellij.platform.uast"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/Spring/lib/spring.jar"/>
+  </resources>
+</module>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.kotlin.base.plugin">
+  <dependencies>
+    <module name="lib.jetbrains-annotations"/>
+    <module name="intellij.platform.analysis"/>
+    <module name="intellij.platform.core"/>
+    <module name="intellij.platform.editor.ui"/>
+    <module name="intellij.platform.ide.impl"/>
+    <module name="lib.kotlin-stdlib"/>
+    <module name="lib.kotlinc.kotlin-compiler-common"/>
+    <module name="lib.kotlinc.kotlin-jps-common"/>
+    <module name="intellij.libraries.guava"/>
+    <module name="intellij.platform.jps.model"/>
+    <module name="intellij.platform.projectModel"/>
+    <module name="kotlin.base.frontend-agnostic"/>
+    <module name="intellij.kotlin.base.util"/>
+    <module name="intellij.kotlin.base.compilerConfiguration"/>
+    <module name="intellij.platform.util.jdom"/>
+    <module name="intellij.platform.core.impl"/>
+    <module name="intellij.platform.projectModel.impl"/>
+    <module name="intellij.platform.statistics"/>
+    <module name="intellij.platform.util.xmlDom"/>
+    <module name="intellij.platform.workspace.storage"/>
+    <module name="intellij.java"/>
+    <module name="intellij.java.impl"/>
+    <module name="intellij.java.ui"/>
+    <module name="intellij.java.aetherDependencyResolver"/>
+    <module name="intellij.platform.ide.core"/>
+    <module name="intellij.platform.core.ui"/>
+    <module name="intellij.platform.util.trove"/>
+    <module name="intellij.platform.util"/>
+    <module name="intellij.platform.lang.core"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/Kotlin/lib/kotlin-plugin.jar"/>
+  </resources>
+</module>

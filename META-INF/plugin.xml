@@ -1,0 +1,171 @@
+<idea-plugin package="org.jetbrains.yaml" allow-bundled-update="true">
+  <name>YAML</name>
+  <id>org.jetbrains.plugins.yaml</id>
+  <version>253.33813.55</version>
+  <idea-version since-build="253.33813" until-build="253.*" />
+  <vendor>JetBrains</vendor>
+  <category>Languages</category>
+  <description><![CDATA[Provides syntax highlighting and editor features for <a href="https://yaml.org/">YAML</a> language.]]></description>
+  <dependencies>
+    <module name="intellij.json" />
+  </dependencies>
+  <content namespace="jetbrains">
+    <module name="intellij.yaml.backend"><![CDATA[<idea-plugin visibility="public">
+  <dependencies>
+    <plugin id="com.intellij.modules.lang" />
+    <module name="intellij.json.backend" />
+    <module name="intellij.platform.backend" />
+    <module name="intellij.platform.searchEverywhere.backend" />
+    <module name="intellij.yaml" />
+    <module name="intellij.spellchecker" />
+  </dependencies>
+  <extensions defaultExtensionNs="com.intellij">
+    <virtualFileCustomDataProvider implementation="org.jetbrains.yaml.editing.YamlCodeStyleSettingsCustomDataSynchronizer" />
+    <additionalTextAttributes scheme="Default" file="colorSchemes/YAMLDefault.xml" />
+    <additionalTextAttributes scheme="Darcula" file="colorSchemes/YAMLDarcula.xml" />
+    <registryKey key="yaml.injection.async.indent" defaultValue="true" description="Performs asynchronous indent when typing 'enter' in code injected into YAML" />
+    <lang.findUsagesProvider language="yaml" id="yamlFindUsagesProvider" implementationClass="org.jetbrains.yaml.YAMLFindUsagesProvider" />
+    <lang.psiStructureViewFactory language="yaml" implementationClass="org.jetbrains.yaml.structureView.YAMLStructureViewFactory" />
+    <qualifiedNameProvider implementation="org.jetbrains.yaml.navigation.YAMLQualifiedNameProvider" />
+    <pom.declarationSearcher implementation="org.jetbrains.yaml.navigation.YAMLScalarKeyDeclarationSearcher" />
+    <searchEverywhereContributor implementation="org.jetbrains.yaml.navigation.YAMLKeysSearchEverywhereContributor$Factory" />
+    <enterHandlerDelegate implementation="org.jetbrains.yaml.smart.YAMLInjectedElementEnterHandler" order="last" />
+    <completion.contributor language="yaml" implementationClass="org.jetbrains.yaml.completion.YamlStructuralKeysCompletionContributor" />
+    <codeInsight.wordCompletionFilter language="yaml" implementationClass="org.jetbrains.yaml.completion.YamlWordCompletionFilter" />
+    <completion.contributor order="after InplaceRename" language="yaml" id="YamlJsonSchema" implementationClass="org.jetbrains.yaml.schema.YamlJsonSchemaCompletionContributor" />
+    <lang.documentationProvider language="yaml" implementationClass="org.jetbrains.yaml.schema.YamlJsonSchemaDocumentationProvider" id="YamlJsonSchemaDocumentationProvider" />
+    <gotoDeclarationHandler implementation="org.jetbrains.yaml.schema.YamlJsonSchemaGotoDeclarationHandler" order="last" />
+    <breadcrumbsInfoProvider implementation="org.jetbrains.yaml.breadcrumbs.YAMLBreadcrumbsInfoProvider" />
+    <readWriteAccessDetector implementation="org.jetbrains.yaml.resolve.YAMLAnchorReadWriteAccessDetector" />
+    <renameInputValidator implementation="org.jetbrains.yaml.resolve.YAMLAnchorRenameInputValidator" order="first" />
+    <lang.refactoringSupport language="yaml" implementationClass="org.jetbrains.yaml.resolve.YAMLRefactoringSupportProvider" />
+    <renamePsiElementProcessor implementation="org.jetbrains.yaml.resolve.YAMLRenamePsiElementProcessor" />
+    <languageInjectionContributor implementationClass="org.jetbrains.yaml.schema.YamlJsonSchemaLanguageInjector" language="yaml" id="yamlJsonSchemaLanguageInjector" />
+    <languageInjectionPerformer implementationClass="org.jetbrains.yaml.YamlLanguageInjectionPerformer" language="yaml" id="yamlLanguageInjectionPerformer" />
+    <lang.inspectionSuppressor language="yaml" implementationClass="org.jetbrains.yaml.YAMLlInspectionSuppressor" />
+    <annotator language="yaml" implementationClass="org.jetbrains.yaml.annotator.YAMLInvalidBlockChildrenErrorAnnotator" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLUnresolvedAlias" key="inspections.unresolved.alias.name" level="ERROR" groupKey="inspections.group.name" enabledByDefault="true" implementationClass="org.jetbrains.yaml.inspections.YAMLUnresolvedAliasInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLRecursiveAlias" key="inspections.recursive.alias.name" level="ERROR" groupKey="inspections.group.name" enabledByDefault="true" implementationClass="org.jetbrains.yaml.inspections.YAMLRecursiveAliasInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLDuplicatedKeys" level="ERROR" key="inspections.duplicated.keys.name" groupKey="inspections.group.name" enabledByDefault="true" implementationClass="org.jetbrains.yaml.inspections.YAMLDuplicatedKeysInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLUnusedAnchor" key="inspections.unused.anchor.name" level="WARNING" groupKey="inspections.group.name" enabledByDefault="true" implementationClass="org.jetbrains.yaml.inspections.YAMLUnusedAnchorInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLIncompatibleTypes" key="inspections.types.mismatch.name" level="WARNING" groupKey="inspections.group.name" enabledByDefault="true" implementationClass="org.jetbrains.yaml.inspections.YAMLIncompatibleTypesInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLSchemaValidation" key="inspections.schema.validation.name" groupKey="inspections.group.name" enabledByDefault="true" level="WARNING" implementationClass="org.jetbrains.yaml.schema.YamlJsonSchemaHighlightingInspection" />
+    <localInspection language="yaml" bundle="messages.YAMLBundle" shortName="YAMLSchemaDeprecation" key="inspections.schema.deprecation.name" groupKey="inspections.group.name" enabledByDefault="true" level="WEAK WARNING" implementationClass="org.jetbrains.yaml.schema.YamlJsonSchemaDeprecationInspection" />
+    <psi.referenceContributor language="yaml" implementation="org.jetbrains.yaml.YAMLWebReferenceContributor" />
+    <psi.referenceContributor language="yaml" implementation="org.jetbrains.yaml.YAMLJsonSchemaIdReferenceContributor" />
+    <completion.contributor language="yaml" implementationClass="org.jetbrains.yaml.YAMLJsonSchemaInCommentCompletionContributor" />
+    <lang.floatingToolbar language="yaml" minimal="true" />
+    <pluginSuggestionProvider implementation="org.jetbrains.yaml.swagger.OpenApiSuggestionProvider" />
+    <pluginSuggestionProvider implementation="org.jetbrains.yaml.helm.GoTemplatePluginSuggestionProvider" />
+    <intentionAction>
+      <language>yaml</language>
+      <className>org.jetbrains.yaml.intentions.YAMLAddOptionalPropertiesIntention</className>
+      <bundleName>messages.YAMLBundle</bundleName>
+      <categoryKey>yaml.intention.category.name</categoryKey>
+    </intentionAction>
+    <intentionAction>
+      <language>yaml</language>
+      <className>org.jetbrains.yaml.refactoring.inlineExpandConversion.YAMLExpandCollectionIntentionAction</className>
+      <bundleName>messages.YAMLBundle</bundleName>
+      <categoryKey>yaml.intention.category.name</categoryKey>
+    </intentionAction>
+    <intentionAction>
+      <language>yaml</language>
+      <className>org.jetbrains.yaml.refactoring.inlineExpandConversion.YAMLExpandAllCollectionsInsideIntentionAction</className>
+      <bundleName>messages.YAMLBundle</bundleName>
+      <categoryKey>yaml.intention.category.name</categoryKey>
+    </intentionAction>
+    <intentionAction>
+      <language>yaml</language>
+      <className>org.jetbrains.yaml.refactoring.inlineExpandConversion.YAMLInlineCollectionIntentionAction</className>
+      <bundleName>messages.YAMLBundle</bundleName>
+      <categoryKey>yaml.intention.category.name</categoryKey>
+    </intentionAction>
+    <fileTypeUsageSchemaDescriptor schema="kubernetes" implementationClass="org.jetbrains.yaml.K8sFileTypeUsageDescriptor" />
+    <fileTypeUsageSchemaDescriptor schema="openapi" implementationClass="org.jetbrains.yaml.OpenapiFileTypeUsageDescriptor" />
+    <fileTypeUsageSchemaDescriptor schema="swagger" implementationClass="org.jetbrains.yaml.SwaggerFileTypeUsageDescriptor" />
+    <fileTypeUsageSchemaDescriptor schema="docker-compose" implementationClass="org.jetbrains.yaml.DockerComposeFileTypeUsageDescriptor" />
+    <fileTypeUsageSchemaDescriptor schema="cloudformation" implementationClass="org.jetbrains.yaml.CloudFormationFileTypeUsageDescriptor" />
+  </extensions>
+  <extensions defaultExtensionNs="com.intellij.json">
+    <jsonLikePsiWalkerFactory implementation="org.jetbrains.yaml.schema.YamlJsonLikePsiWalkerFactory" />
+    <jsonSchemaEnabler implementation="org.jetbrains.yaml.schema.YamlJsonEnabler" />
+  </extensions>
+  <extensions defaultExtensionNs="com.intellij.spellchecker">
+    <support language="yaml" implementationClass="org.jetbrains.yaml.YAMLSpellcheckerStrategy" />
+  </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+    <searchEverywhere.itemsProviderFactory implementation="org.jetbrains.yaml.searchEverywhere.SeYAMLKeysProviderFactory" />
+  </extensions>
+  <extensionPoints>
+    <extensionPoint qualifiedName="com.intellij.yaml.tagRecogniser" interface="org.jetbrains.yaml.psi.YamlTagRecogniser" dynamic="true" />
+    <extensionPoint qualifiedName="com.intellij.yaml.customStructureViewFactory" interface="org.jetbrains.yaml.structureView.YAMLCustomStructureViewFactory" dynamic="true" />
+  </extensionPoints>
+</idea-plugin>]]></module>
+    <module name="intellij.yaml" loading="embedded"><![CDATA[<idea-plugin visibility="public">
+  <extensions defaultExtensionNs="com.intellij">
+    <langCodeStyleSettingsProvider implementation="org.jetbrains.yaml.settingsSync.YAMLLanguageCodeStyleSettingsProvider" />
+    <colorSettingsPage implementation="org.jetbrains.yaml.YAMLColorsPage" />
+    <lang.parserDefinition language="yaml" implementationClass="org.jetbrains.yaml.YAMLParserDefinition" />
+    <fileType name="YAML" implementationClass="org.jetbrains.yaml.YAMLFileType" fieldName="YML" language="yaml" extensions="yaml;yml" />
+    <projectService serviceImplementation="org.jetbrains.yaml.YAMLElementGenerator" />
+    <lang.elementManipulator forClass="org.jetbrains.yaml.psi.impl.YAMLScalarImpl" implementationClass="org.jetbrains.yaml.psi.impl.YAMLScalarElementManipulator" />
+    <lang.elementManipulator forClass="org.jetbrains.yaml.psi.YAMLKeyValue" implementationClass="org.jetbrains.yaml.psi.impl.YAMLKeyValueKeyManipulator" />
+    <elementDescriptionProvider implementation="org.jetbrains.yaml.psi.impl.YAMLElementDescriptionProvider" />
+    <inspection.basicVisitor class="org.jetbrains.yaml.psi.YamlPsiElementVisitor" />
+    <lang.syntaxHighlighterFactory language="yaml" implementationClass="org.jetbrains.yaml.YAMLSyntaxHighlighterFactory" />
+    <lang.formatter language="yaml" implementationClass="org.jetbrains.yaml.formatter.YAMLFormattingModelBuilder" />
+    <lang.commenter language="yaml" implementationClass="org.jetbrains.yaml.YAMLCommenter" />
+    <lang.braceMatcher language="yaml" implementationClass="org.jetbrains.yaml.YAMLPairedBraceMatcher" />
+    <lang.whiteSpaceFormattingStrategy language="yaml" implementationClass="org.jetbrains.yaml.formatter.YamlWhiteSpaceFormattingStrategy" />
+    <stripTrailingSpacesFilterFactory implementation="org.jetbrains.yaml.formatter.YamlStripTrailingSpacesFilterFactory" />
+    <backspaceHandlerDelegate implementation="org.jetbrains.yaml.smart.YAMLEmptySequenceItemBackspaceHandler" order="first" />
+    <editor.backspaceModeOverride language="yaml" implementationClass="com.intellij.codeInsight.editorActions.SmartBackspaceDisabler" />
+    <enterHandlerDelegate implementation="org.jetbrains.yaml.smart.YAMLEnterAtIndentHandler" order="first" />
+    <typedHandler implementation="org.jetbrains.yaml.formatter.YAMLHyphenTypedHandler" />
+    <quoteHandler fileType="YAML" className="org.jetbrains.yaml.smart.YamlQuoteHandler" />
+    <statementUpDownMover implementation="org.jetbrains.yaml.smart.YAMLStatementMover" id="yamlStatementMover" order="before line" />
+    <lang.foldingBuilder language="yaml" id="YAMLFoldingBuilder" implementationClass="org.jetbrains.yaml.folding.YAMLFoldingBuilder" />
+    <renameInputValidator implementation="org.jetbrains.yaml.refactoring.rename.YamlKeyValueRenameInputValidator" order="first" />
+    <applicationService serviceImplementation="org.jetbrains.yaml.smart.YAMLEditorOptions" />
+    <applicationSettings service="org.jetbrains.yaml.smart.YAMLEditorOptions" />
+    <applicationService serviceImplementation="org.jetbrains.yaml.folding.YAMLFoldingSettings" />
+    <codeFoldingOptionsProvider instance="org.jetbrains.yaml.folding.YAMLFoldingOptionsProvider" />
+    <rdct.remoteSettingProvider implementation="org.jetbrains.yaml.smart.YAMLRemoteSettingInfoProvider" />
+    <editorSmartKeysConfigurable instance="org.jetbrains.yaml.smart.YAMLSmartOptionsProvider" id="editor.preferences.yamlOptions" bundle="messages.YAMLBundle" key="yaml.smartkeys.option.title" />
+    <copyPastePreProcessor implementation="org.jetbrains.yaml.smart.YAMLCopyPasteProcessor" />
+  </extensions>
+</idea-plugin>]]></module>
+    <module name="intellij.yaml.frontend.split"><![CDATA[<idea-plugin>
+  <dependencies>
+    <module name="intellij.platform.frontend.split" />
+    <module name="intellij.yaml" />
+  </dependencies>
+  <extensions defaultExtensionNs="com.intellij">
+    <virtualFileCustomDataConsumer implementation="org.jetbrains.yaml.editing.YamlCodeStyleSettingsCustomDataSynchronizer" />
+    <rdclient.editorActionHandlerStrategyCustomizer implementation="com.intellij.yaml.frontend.split.YamlFrontendEditorActionCustomizer" />
+    <rdclient.highlighterSuppressionHandler implementation="com.intellij.yaml.frontend.split.YamlFrontendHighlightingSuppressor" />
+    <rdclient.actionCustomization actionId="CommentByBlockComment" implementationClass="com.intellij.yaml.frontend.split.YamlBackendActionCustomizer" backend="remote" />
+    <rdclient.actionCustomization actionId="CommentByLineComment" implementationClass="com.intellij.yaml.frontend.split.YamlBackendActionCustomizer" backend="remote" />
+  </extensions>
+</idea-plugin>]]></module>
+    <module name="intellij.yaml.helm"><![CDATA[<idea-plugin visibility="internal">
+  <dependencies>
+    <module name="intellij.yaml.backend" />
+    <plugin id="org.jetbrains.plugins.go-template" />
+  </dependencies>
+  <extensions defaultExtensionNs="com.intellij">
+    <fileType name="Helm YAML template" implementationClass="com.intellij.yaml.helm.fileTypes.HelmYamlFileType" language="HelmYaml" extensions="kubernetes-helm-yaml" />
+    <fileType name="Helm JSON template" implementationClass="com.intellij.yaml.helm.fileTypes.HelmJsonFileType" language="HelmJson" extensions="kubernetes-helm-json" />
+    <fileType name="Helm TEXT template" implementationClass="com.intellij.yaml.helm.fileTypes.HelmTextFileType" language="HelmText" extensions="kubernetes-helm-txt" />
+    <editorHighlighterProvider filetype="Helm YAML template" implementationClass="com.intellij.yaml.helm.highlighting.HelmYamlEditorHighlighterProvider" />
+    <editorHighlighterProvider filetype="Helm JSON template" implementationClass="com.intellij.yaml.helm.highlighting.HelmJsonEditorHighlighterProvider" />
+    <editorHighlighterProvider filetype="Helm TEXT template" implementationClass="com.intellij.yaml.helm.highlighting.HelmTextEditorHighlighterProvider" />
+    <lang.fileViewProviderFactory language="HelmYaml" implementationClass="com.intellij.yaml.helm.fileView.HelmFileViewProviderFactory" />
+    <lang.fileViewProviderFactory language="HelmJson" implementationClass="com.intellij.yaml.helm.fileView.HelmFileViewProviderFactory" />
+    <lang.fileViewProviderFactory language="HelmText" implementationClass="com.intellij.yaml.helm.fileView.HelmFileViewProviderFactory" />
+    <fileIndentOptionsProvider implementation="com.intellij.yaml.helm.formatting.HelmTemplateIndentProvider" />
+  </extensions>
+</idea-plugin>]]></module>
+  </content>
+</idea-plugin>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.compose.ide.plugin">
+  <resources>
+    <resource-root path="../plugins/compose-ide-plugin/lib/compose-ide-plugin.jar"/>
+  </resources>
+</module>

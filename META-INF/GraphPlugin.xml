@@ -1,0 +1,318 @@
+<idea-plugin>
+  <actions>
+    <group id="Graphs.KeymapGroup" searchable="false">
+      <!-- ***** yFiles actions *************************************** -->
+      <action id="Graph.ZoomIn" class="com.intellij.openapi.graph.builder.actions.ZoomInAction"
+              icon="AllIcons.Graph.ZoomIn">
+        <keyboard-shortcut first-keystroke="ADD" keymap="$default"/>
+        <keyboard-shortcut first-keystroke="EQUALS" keymap="$default"/>
+      </action>
+
+      <action id="Graph.ZoomOut" class="com.intellij.openapi.graph.builder.actions.ZoomOutAction"
+              icon="AllIcons.Graph.ZoomOut">
+        <keyboard-shortcut first-keystroke="SUBTRACT" keymap="$default"/>
+        <keyboard-shortcut first-keystroke="MINUS" keymap="$default"/>
+      </action>
+
+      <action id="Graph.ActualSize" class="com.intellij.openapi.graph.builder.actions.ActualSizeAction"
+              icon="AllIcons.Graph.ActualZoom">
+        <keyboard-shortcut first-keystroke="control DIVIDE" keymap="$default"/>
+        <keyboard-shortcut first-keystroke="control SLASH" keymap="$default"/>
+      </action>
+
+      <action id="Graph.CopyEntireDiagramToClipboard"
+              class="com.intellij.openapi.graph.builder.actions.export.CopyEntireDiagramToClipboardAction"
+              icon="AllIcons.Actions.Copy"/>
+
+      <action id="Graph.CopyDiagramSelectionToClipboard"
+              class="com.intellij.openapi.graph.builder.actions.export.CopyDiagramSelectionToClipboardAction"
+              icon="AllIcons.Actions.InSelection"/>
+
+      <action id="Graph.ExportToFile" class="com.intellij.openapi.graph.builder.actions.export.ExportToFileAction"
+              icon="AllIcons.General.LayoutPreviewOnly"/>
+
+      <action id="Graph.ShowHideGrid" class="com.intellij.openapi.graph.builder.actions.ShowHideGridAction"
+              icon="AllIcons.Graph.Grid"/>
+      <action id="Graph.SnapToGrid" class="com.intellij.openapi.graph.builder.actions.SnapToGridAction"
+              icon="AllIcons.Graph.SnapToGrid"/>
+
+      <action id="Graph.FitContent" class="com.intellij.openapi.graph.builder.actions.FitContentAction"
+              icon="AllIcons.General.FitContent"/>
+
+      <action id="Graph.ShowStructureViewForSelectedNode"
+              class="com.intellij.openapi.graph.builder.actions.ShowStructureViewForSelectedNodeAction"
+              icon="AllIcons.Toolwindows.ToolWindowStructure"/>
+
+      <action id="Graph.Delete" class="com.intellij.openapi.graph.builder.actions.DeleteSelectionAction" use-shortcut-of="$Delete"/>
+
+      <action id="Graph.Show.Edge.Labels" class="com.intellij.openapi.graph.builder.actions.ShowEdgeLabels"/>
+      <action id="Graph.Show.Bridges" class="com.intellij.openapi.graph.builder.actions.appearance.ShowHideBridgesAction"/>
+      <action id="Graph.Current.Node.Dependencies.Filter" class="com.intellij.openapi.graph.builder.actions.SelectionNodeModeAction"
+              icon="AllIcons.Graph.NodeSelectionMode"/>
+      <action id="Graph.ApplyCurrentLayout" class="com.intellij.openapi.graph.builder.actions.layout.ApplyCurrentLayoutAction"
+              icon="AllIcons.Graph.Layout">
+        <keyboard-shortcut first-keystroke="shift F5" keymap="$default"/>
+      </action>
+      <action id="Graph.RouteEdges" class="com.intellij.openapi.graph.builder.actions.layout.RouteEdgesAction"
+              icon="AllIcons.Actions.MoveToButton">
+        <keyboard-shortcut first-keystroke="F5" keymap="$default"/>
+      </action>
+
+
+      <group id="Graph.MergeEdgesGroup" popup="true">
+        <action id="Graph.MergeEdges.BySources" class="com.intellij.openapi.graph.builder.actions.appearance.MergeEdgesBySourcesAction"/>
+        <action id="Graph.MergeEdges.ByTargets" class="com.intellij.openapi.graph.builder.actions.appearance.MergeEdgesByTargetsAction"/>
+      </group>
+
+
+      <!-- ***** yFiles layouts ********************** -->
+      <group id="Graph.CommonLayoutGroup" popup="true">
+        <group id="Graph.OrthogonalLayoutGroup" popup="true">
+          <action id="Graph.Layout.CompactOrthogonalLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.CompactOrthogonalLayouterAction"/>
+          <action id="Graph.Layout.HierarchicGroupLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.HierarchicGroupLayouterAction"/>
+          <action id="Graph.Layout.HierarchicLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.HierarchicLayouterAction"/>
+          <action id="Graph.Layout.OrthogonalGroupLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.OrthogonalGroupLayouterAction"/>
+          <action id="Graph.Layout.SeriesParallelLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.SeriesParallelLayouterAction"/>
+          <action id="Graph.Layout.ChannelLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.orthogonal.ChannelLayouterAction"/>
+        </group>
+
+        <group id="Graph.TreeLayoutGroup" popup="true">
+          <action id="Graph.Layout.ARTreeLayouter" class="com.intellij.openapi.graph.builder.actions.layout.tree.ARTreeLayouterAction"/>
+          <action id="Graph.Layout.BalloonLayouter" class="com.intellij.openapi.graph.builder.actions.layout.tree.BalloonLayouterAction"/>
+          <action id="Graph.Layout.BalloonEdgeBundledLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.tree.BalloonEdgeBundledLayouterAction"/>
+          <action id="Graph.Layout.FamilyLayouter" class="com.intellij.openapi.graph.builder.actions.layout.tree.FamilyTreeLayouterAction"/>
+          <action id="Graph.Layout.GenericLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.tree.GenericTreeLayouterAction"/>
+          <action id="Graph.Layout.HVTreeLayouter" class="com.intellij.openapi.graph.builder.actions.layout.tree.HVTreeLayouterAction"/>
+        </group>
+
+        <group id="Graph.RadialLayoutGroup" popup="true">
+          <action id="Graph.Layout.CircularLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.radial.CircularLayouterAction"/>
+          <action id="Graph.Layout.CircularEdgeBundledLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.radial.CircularEdgeBundledLayouterAction"/>
+          <action id="Graph.Layout.RadialLayouter" class="com.intellij.openapi.graph.builder.actions.layout.radial.RadialLayouterAction"/>
+          <action id="Graph.Layout.RadialEdgeBundledLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.radial.RadialEdgeBundledLayouterAction"/>
+          <action id="Graph.Layout.SingleCycleLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.radial.SingleCycleLayouterAction"/>
+        </group>
+
+        <group id="Graph.NetsLayoutGroup" popup="true">
+          <action id="Graph.Layout.OrganicLayouter" class="com.intellij.openapi.graph.builder.actions.layout.nets.OrganicLayouterAction"/>
+          <action id="Graph.Layout.OrganicEdgeBundledLayouter"
+                  class="com.intellij.openapi.graph.builder.actions.layout.nets.OrganicEdgeBundledLayouterAction"/>
+          <action id="Graph.Layout.RandomLayouter" class="com.intellij.openapi.graph.builder.actions.layout.nets.RandomLayouterAction"/>
+        </group>
+      </group>
+
+      <action id="Graph.Layout.Fit.Content" class="com.intellij.openapi.graph.builder.actions.layout.FitContentAfterLayoutAction"
+              keymap="$default">
+      </action>
+
+      <action id="Graph.NeighborhoodViewPopup.CompactMode"
+              class="com.intellij.openapi.graph.builder.actions.localview.LocalViewCompactNodeDisplayModeAction"/>
+
+      <action id="Graph.NeighborhoodViewPopup.SameAsModelLayouter"
+              class="com.intellij.openapi.graph.builder.actions.localview.LocalViewSelectSameAsModelLayouterAction"/>
+
+      <add-to-group group-id="Other.KeymapGroup"/>
+    </group>
+
+    <group id="Graph.AlignNodesGroup" class="com.intellij.ide.actions.NonTrivialActionGroup" popup="true">
+      <action id="Graph.AlignNodes.Top" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesTopAction">
+        <keyboard-shortcut first-keystroke="shift t" keymap="$default"/>
+      </action>
+      <action id="Graph.AlignNodes.Middle" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesMiddleAction">
+        <keyboard-shortcut first-keystroke="shift m" keymap="$default"/>
+      </action>
+      <action id="Graph.AlignNodes.Bottom" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesBottomAction">
+        <keyboard-shortcut first-keystroke="shift b" keymap="$default"/>
+      </action>
+      <action id="Graph.AlignNodes.Left" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesLeftAction">
+        <keyboard-shortcut first-keystroke="shift l" keymap="$default"/>
+      </action>
+      <action id="Graph.AlignNodes.Center" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesCenterAction">
+        <keyboard-shortcut first-keystroke="shift c" keymap="$default"/>
+      </action>
+      <action id="Graph.AlignNodes.Right" class="com.intellij.openapi.graph.builder.actions.align.GraphAlignNodesRightAction">
+        <keyboard-shortcut first-keystroke="shift r" keymap="$default"/>
+      </action>
+
+      <add-to-group group-id="Graphs.KeymapGroup"/>
+    </group>
+
+    <group id="Graph.DistributeNodesGroup" class="com.intellij.ide.actions.NonTrivialActionGroup" popup="true">
+      <action id="Graph.DistributeNodes.Horizontally" class="com.intellij.openapi.graph.builder.actions.align.GraphDistributeNodesHorizontallyAction">
+        <keyboard-shortcut first-keystroke="shift h" keymap="$default"/>
+      </action>
+      <action id="Graph.DistributeNodes.Vertically" class="com.intellij.openapi.graph.builder.actions.align.GraphDistributeNodesVerticallyAction">
+        <keyboard-shortcut first-keystroke="shift v" keymap="$default"/>
+      </action>
+
+      <add-to-group group-id="Graphs.KeymapGroup"/>
+    </group>
+
+    <group id="Graph.LayoutOrientationGroup" popup="true">
+      <action id="Graph.LayoutOrientation.BottomToTop"
+              class="com.intellij.openapi.graph.builder.actions.orientation.SelectBottomToTopOrientationAction"/>
+      <action id="Graph.LayoutOrientation.TopToBottom"
+              class="com.intellij.openapi.graph.builder.actions.orientation.SelectTopToBottomOrientationAction"/>
+      <action id="Graph.LayoutOrientation.LeftToRight"
+              class="com.intellij.openapi.graph.builder.actions.orientation.SelectLeftToRightOrientationAction"/>
+      <action id="Graph.LayoutOrientation.RightToLeft"
+              class="com.intellij.openapi.graph.builder.actions.orientation.SelectRightToLeftOrientationAction"/>
+
+      <add-to-group group-id="Graphs.KeymapGroup"/>
+    </group>
+
+    <group id="Graph.EdgeRealizerGroup" popup="true">
+      <action id="Graph.EdgeRealizer.ArcEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectArcEdgeRealizerAction"/>
+      <action id="Graph.EdgeRealizer.BezierEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectBezierEdgeRealizerAction"/>
+      <action id="Graph.EdgeRealizer.QuadCurveEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectQuadCurveEdgeRealizerAction"/>
+      <action id="Graph.EdgeRealizer.SplineEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectSplineEdgeRealizerAction"/>
+      <action id="Graph.EdgeRealizer.StraightPolylineEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectStraightPolylineEdgeRealizerAction"/>
+      <action id="Graph.EdgeRealizer.SmoothedPolylineEdgeRealizer"
+              class="com.intellij.openapi.graph.builder.actions.appearance.edgerealizers.SelectSmoothedPolylineEdgeRealizerAction"/>
+
+      <add-to-group group-id="Graphs.KeymapGroup"/>
+    </group>
+
+    <group id="Graph.AppearanceGroup" popup="true">
+      <reference ref="Graph.ShowHideGrid"/>
+      <reference ref="Graph.Show.Edge.Labels"/>
+      <reference ref="Graph.Show.Bridges"/>
+      <reference ref="Graph.MergeEdgesGroup"/>
+      <reference ref="Graph.EdgeRealizerGroup"/>
+    </group>
+
+    <group id="Graph.BehaviourGroup" popup="true">
+      <reference ref="Graph.SnapToGrid"/>
+      <reference ref="Graph.Layout.Fit.Content"/>
+      <reference ref="Graph.ShowStructureViewForSelectedNode"/>
+      <reference ref="Graph.Current.Node.Dependencies.Filter"/>
+    </group>
+
+    <group id="Graph.ExportGroup" popup="true">
+      <reference ref="Graph.CopyEntireDiagramToClipboard"/>
+      <reference ref="Graph.CopyDiagramSelectionToClipboard"/>
+      <reference ref="Graph.ExportToFile"/>
+      <reference ref="Print"/>
+    </group>
+
+    <group id="Graph.DefaultGraphPopup">
+      <reference ref="Graph.ActualSize"/>
+      <reference ref="Graph.FitContent"/>
+      <reference ref="Graph.AlignNodesGroup"/>
+      <reference ref="Graph.DistributeNodesGroup"/>
+      <separator/>
+      <reference ref="Graph.CommonLayoutGroup"/>
+      <reference ref="Graph.LayoutOrientationGroup"/>
+      <reference ref="Graph.ApplyCurrentLayout"/>
+      <reference ref="Graph.RouteEdges"/>
+      <separator/>
+      <reference ref="Graph.AppearanceGroup"/>
+      <separator/>
+      <reference ref="Graph.BehaviourGroup"/>
+      <separator/>
+      <reference ref="Graph.ExportGroup"/>
+      <separator/>
+      <reference ref="ContextHelp"/>
+    </group>
+
+    <group id="Graph.DefaultGraphToolbar">
+      <reference ref="Graph.Current.Node.Dependencies.Filter"/>
+      <separator/>
+      <reference ref="Graph.ZoomIn"/>
+      <reference ref="Graph.ZoomOut"/>
+      <reference ref="Graph.ActualSize"/>
+      <reference ref="Graph.FitContent"/>
+      <separator/>
+      <reference ref="Graph.ApplyCurrentLayout"/>
+      <reference ref="Graph.RouteEdges"/>
+      <separator/>
+      <reference ref="Graph.CopyEntireDiagramToClipboard"/>
+      <reference ref="Graph.CopyDiagramSelectionToClipboard"/>
+      <reference ref="Graph.ExportToFile"/>
+      <reference ref="Print"/>
+      <separator/>
+      <reference ref="Graph.Delete"/>
+    </group>
+
+    <group id="Graph.NeighborhoodViewPopup.LayoutGroup" popup="true">
+      <reference ref="Graph.NeighborhoodViewPopup.SameAsModelLayouter"/>
+      <reference ref="Graph.OrthogonalLayoutGroup"/>
+      <reference ref="Graph.TreeLayoutGroup"/>
+      <reference ref="Graph.RadialLayoutGroup"/>
+      <reference ref="Graph.NetsLayoutGroup"/>
+    </group>
+
+    <group id="Graph.NeighborhoodViewPopup.AppearanceGroup" popup="true">
+      <reference ref="Graph.NeighborhoodViewPopup.CompactMode"/>
+      <reference ref="Graph.ShowHideGrid"/>
+      <reference ref="Graph.Show.Edge.Labels"/>
+      <reference ref="Graph.Show.Bridges"/>
+      <reference ref="Graph.MergeEdgesGroup"/>
+      <reference ref="Graph.EdgeRealizerGroup"/>
+    </group>
+
+    <group id="Graph.NeighborhoodViewPopup">
+      <reference ref="Graph.ActualSize"/>
+      <reference ref="Graph.FitContent"/>
+      <separator/>
+      <reference ref="Graph.NeighborhoodViewPopup.LayoutGroup"/>
+      <reference ref="Graph.LayoutOrientationGroup"/>
+      <reference ref="Graph.ApplyCurrentLayout"/>
+      <reference ref="Graph.RouteEdges"/>
+      <separator/>
+      <reference ref="Graph.NeighborhoodViewPopup.AppearanceGroup"/>
+      <separator/>
+      <reference ref="Graph.BehaviourGroup"/>
+      <separator/>
+      <reference ref="Graph.ExportGroup"/>
+      <separator/>
+      <reference ref="ContextHelp"/>
+    </group>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceInterface="com.intellij.openapi.graph.GraphManager"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphManagerImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.builder.util.NodeFactory"
+                        serviceImplementation="com.intellij.openapi.graph.impl.builder.NodeFactoryImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.GraphPeerFactory"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphPeerFactoryImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.GraphSvgExporter"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphSvgExporterImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.services.GraphAnimationService"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphAnimationServiceImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.services.GraphGroupingService"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphGroupingServiceImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.services.GraphLayoutService"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphLayoutServiceImpl"/>
+    <applicationService serviceInterface="com.intellij.openapi.graph.services.GraphUndoService"
+                        serviceImplementation="com.intellij.openapi.graph.impl.GraphUndoServiceImpl"/>
+
+    <projectService serviceInterface="com.intellij.openapi.graph.builder.GraphBuilderFactory"
+                    serviceImplementation="com.intellij.openapi.graph.impl.builder.GraphBuilderFactoryImpl"/>
+    <projectService serviceInterface="com.intellij.openapi.graph.builder.dnd.ProjectViewDnDHelper"
+                    serviceImplementation="com.intellij.openapi.graph.impl.builder.dnd.ProjectViewDnDHelperImpl"/>
+    <projectService serviceInterface="com.intellij.openapi.graph.builder.GraphEditModeFactory"
+                    serviceImplementation="com.intellij.openapi.graph.impl.builder.GraphEditModeFactoryImpl"/>
+    <printHandler implementation="com.intellij.openapi.graph.builder.actions.printing.DiagramPrintHandler" order="before TextPrintHandler"/>
+
+    <notificationGroup id="Graph general notifications" displayType="BALLOON" bundle="messages.GraphBundle" key="notification.group.graph"/>
+  </extensions>
+</idea-plugin>

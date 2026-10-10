@@ -1,0 +1,11 @@
+<idea-plugin>
+    <content namespace="jetbrains">
+        <module name="kotlin-ultimate.javascript.debugger"/>
+        <module name="kotlin-ultimate.javascript.nodeJs"/>
+        <module name="kotlin-ultimate.wasm.debugger"/>
+        <module name="kotlin-ultimate.common-native"/>
+        <module name="kotlin-ultimate.native-debugger"/>
+        <module name="kotlin-ultimate.ultimate-native"/>
+        <module name="kotlin-ultimate.profiler"/>
+    </content>
+</idea-plugin>

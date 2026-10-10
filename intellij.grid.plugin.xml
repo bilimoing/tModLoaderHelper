@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.grid.plugin">
+  <resources>
+    <resource-root path="../plugins/grid-plugin/lib/grid-plugin.jar"/>
+  </resources>
+</module>

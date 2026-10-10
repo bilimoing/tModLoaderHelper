@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.sass.frontend.split.plugin">
+  <dependencies>
+    <module name="intellij.sass.frontend.split"/>
+    <module name="intellij.sass.common"/>
+    <module name="intellij.sass"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/sass-plugin/lib/frontend-split/sass-frontend.jar"/>
+  </resources>
+</module>

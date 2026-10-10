@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.gateway.plugin">
+  <dependencies>
+    <module name="intellij.gateway.core"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/gateway-plugin/lib/gateway-plugin.jar"/>
+  </resources>
+</module>

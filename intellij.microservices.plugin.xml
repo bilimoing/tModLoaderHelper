@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.microservices.plugin">
+  <resources>
+    <resource-root path="../plugins/microservices-plugin/lib/microservices-plugin.jar"/>
+  </resources>
+</module>

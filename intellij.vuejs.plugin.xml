@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.vuejs.plugin">
+  <dependencies>
+    <module name="lib.kotlin-stdlib"/>
+    <module name="intellij.vuejs.backend"/>
+    <module name="intellij.vuejs.common"/>
+    <module name="intellij.vuejs.copyright"/>
+    <module name="intellij.vuejs.debugger"/>
+    <module name="intellij.vuejs.markdown"/>
+    <module name="intellij.vuejs.prettier"/>
+    <module name="intellij.javascript.plugin"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/vuejs-plugin/lib/vuejs-plugin.jar"/>
+  </resources>
+</module>

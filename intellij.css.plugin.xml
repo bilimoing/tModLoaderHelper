@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.css.plugin">
+  <dependencies>
+    <module name="intellij.css.analysis"/>
+    <module name="intellij.css.backend"/>
+    <module name="intellij.css.common"/>
+    <module name="intellij.css.common.psi"/>
+    <module name="intellij.css.copyright"/>
+    <module name="intellij.css.frontend.split"/>
+    <module name="intellij.css.psi"/>
+    <module name="intellij.css.schemeGenerator"/>
+    <module name="intellij.css.watcher"/>
+    <module name="intellij.css.xmlSchemeGenerator"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/css-plugin/lib/css-plugin.jar"/>
+  </resources>
+</module>

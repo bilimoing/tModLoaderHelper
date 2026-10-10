@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.kotlin.jupyter.plugin">
+  <resources>
+    <resource-root path="../plugins/kotlin-jupyter-plugin/lib/kotlin-jupyter-plugin.jar"/>
+  </resources>
+</module>

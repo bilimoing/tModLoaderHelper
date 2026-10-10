@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="lib.intellij.jupyter.py.jetbrains.intellij.deps.jupyter.plugin">
+  <resources>
+    <resource-root path="../plugins/jupyter-plugin/lib/modules/intellij.jupyter.py.jar"/>
+  </resources>
+</module>

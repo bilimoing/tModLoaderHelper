@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.javaee.platform.plugin">
+  <resources>
+    <resource-root path="../plugins/JavaEE/lib/javaee-platform.jar"/>
+  </resources>
+</module>

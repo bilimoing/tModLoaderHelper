@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.textmate.plugin">
+  <resources>
+    <resource-root path="../plugins/textmate-plugin/lib/textmate-plugin.jar"/>
+  </resources>
+</module>

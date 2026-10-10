@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.station.plugin">
+  <resources>
+    <resource-root path="../plugins/station-plugin/lib/station-plugin.jar"/>
+  </resources>
+</module>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.sh.plugin">
+  <resources>
+    <resource-root path="../plugins/sh-plugin/lib/sh-plugin.jar"/>
+  </resources>
+</module>

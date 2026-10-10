@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.editorconfig.plugin">
+  <resources>
+    <resource-root path="../plugins/editorconfig-plugin/lib/editorconfig-plugin.jar"/>
+  </resources>
+</module>

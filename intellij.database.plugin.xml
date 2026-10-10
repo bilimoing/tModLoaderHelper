@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.database.plugin">
+  <dependencies>
+    <module name="intellij.database.sql.impl"/>
+    <module name="intellij.database.sql.backend.core"/>
+    <module name="intellij.database.impl"/>
+    <module name="intellij.database.dialects"/>
+    <module name="intellij.database.diagrams"/>
+    <module name="intellij.database.flameGraphs"/>
+    <module name="intellij.database.docker"/>
+    <module name="intellij.database.grazie"/>
+    <module name="intellij.platform.analysis"/>
+    <module name="intellij.platform.core"/>
+    <module name="intellij.platform.lang"/>
+    <module name="intellij.platform.lang.core"/>
+    <module name="intellij.platform.lang.impl"/>
+    <module name="intellij.platform.commercial"/>
+    <module name="intellij.platform.commercial.verifier"/>
+    <module name="intellij.platform.core.ui"/>
+    <module name="intellij.database.completionMlRanking"/>
+    <module name="intellij.platform.projectModel"/>
+    <module name="intellij.database.impl.frontend"/>
+    <module name="lib.intellij.database.plugin.tips-database-plugin"/>
+    <module name="intellij.database.sql.core.impl"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/DatabaseTools/lib/database-plugin.jar"/>
+  </resources>
+</module>

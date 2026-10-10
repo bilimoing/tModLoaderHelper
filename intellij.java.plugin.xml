@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.java.plugin">
+  <dependencies>
+    <module name="intellij.java.compiler.impl"/>
+    <module name="intellij.java.debugger.impl"/>
+    <module name="intellij.java.debugger.impl.shared"/>
+    <module name="intellij.java.debugger.impl.frontend"/>
+    <module name="intellij.java.debugger.impl.backend"/>
+    <module name="intellij.xml.dom.impl"/>
+    <module name="intellij.java.debugger.memory.agent"/>
+    <module name="intellij.java.execution.impl"/>
+    <module name="intellij.java.execution.impl.shared"/>
+    <module name="intellij.java.execution.impl.backend"/>
+    <module name="intellij.java.execution.impl.frontend"/>
+    <module name="intellij.platform.externalSystem.impl"/>
+    <module name="intellij.java.ui"/>
+    <module name="intellij.java.manifest"/>
+    <module name="intellij.java.impl.inspections"/>
+    <module name="intellij.java.analysis.impl"/>
+    <module name="intellij.java.indexing.impl"/>
+    <module name="intellij.jsp.spi"/>
+    <module name="intellij.java.uast.ide"/>
+    <module name="intellij.java.structuralSearch"/>
+    <module name="intellij.java.typeMigration"/>
+    <module name="intellij.java.resources"/>
+    <module name="intellij.java.resources.en"/>
+    <module name="intellij.java.performancePlugin"/>
+    <module name="intellij.java.vcs"/>
+    <module name="intellij.java.syntax"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/java/lib/java-impl.jar"/>
+  </resources>
+</module>

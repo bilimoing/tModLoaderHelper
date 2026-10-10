@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.database.frontend.plugin">
+  <dependencies>
+    <module name="lib.kotlin-stdlib"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/DatabaseTools/lib/frontend-split/database-frontend.jar"/>
+  </resources>
+</module>

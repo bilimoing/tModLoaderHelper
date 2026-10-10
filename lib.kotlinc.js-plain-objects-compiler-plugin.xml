@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="lib.kotlinc.js-plain-objects-compiler-plugin">
+  <resources>
+    <resource-root path="../plugins/Kotlin/lib/kotlinc.js-plain-objects-compiler-plugin.jar"/>
+  </resources>
+</module>

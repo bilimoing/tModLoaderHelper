@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="intellij.diagram.plugin">
+  <dependencies>
+    <module name="intellij.diagram"/>
+    <module name="intellij.platform.graph"/>
+  </dependencies>
+  <resources>
+    <resource-root path="../plugins/uml/lib/uml-support.jar"/>
+  </resources>
+</module>

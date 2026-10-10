@@ -23,6 +23,8 @@ tModLoader 助手为 Rider 中的泰拉瑞亚模组开发提供实体图鉴与 C
         <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.ProjectileCompletionContributor"/>
         <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.NpcCompletionContributor"/>
         <completion.contributor language="C#" implementationClass="com.moling.tmodloaderhelper.items.BuffCompletionContributor"/>
+        <lang.documentationProvider language="C#" implementationClass="com.moling.tmodloaderhelper.items.IdDocumentationProvider"/>
+        <codeInsight.inlayProvider language="C#" implementationClass="com.moling.tmodloaderhelper.items.IdChineseInlayHintsProvider" enabledByDefault="true" settingsKeyId="tmodloader.id.chinese.inlay"/>
 
         <toolWindow id="tModLoader助手" anchor="right" factoryClass="com.moling.tmodloaderhelper.items.ItemBrowserToolWindowFactory" icon="/META-INF/tool.png"/>
     </extensions>
